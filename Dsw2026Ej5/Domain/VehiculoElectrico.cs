@@ -14,13 +14,19 @@ public class VehiculoElectrico : Vehiculo
         this.kwhBase = kwhBase;
     }
 
-    public double GetKwhBase()
+    public double GetKwhBase(double kilometros)
     {
         return kwhBase;
     }
 
     public override double CalcularConsumo(double kilometros)
     {
-        return kilometros * kwhBase;
+        double consumo = (kilometros / 100.0) * kwhBase;
+
+        if (GetCapacidadCarga() > 1200)
+        {
+            consumo = consumo * 1.15;
+        }
+        return consumo;
     }
 }
